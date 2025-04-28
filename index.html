@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cute Samoyed Petting Game</title>
+  <style>
+    body {
+      background: pink;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      font-family: 'Arial', sans-serif;
+    }
+    h1 {
+      color: #333;
+    }
+    #dog {
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+      position: relative;
+    }
+    #counter {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: #555;
+    }
+    .heart {
+      position: absolute;
+      color: #ff6b81;
+      font-size: 1.5rem;
+      animation: rise 1s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes rise {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <h1>点击摸它!</h1>
+  <p style="color: #666; font-size: 0.9rem;">
+  <div id="dog-container" style="position: relative;">
+
+    <img id="dog" src="dog.png" alt="Fluffy Samoyed">
+  </div>
+  <div id="counter">好感度:0</div>
+  <script>
+    const dog = document.getElementById('dog');
+    const counterEl = document.getElementById('counter');
+    let count = 0;
+    dog.addEventListener('click', function(e) {
+      count++;
+      counterEl.textContent = '好感度:' + count;
+      createHeart(e.clientX, e.clientY);
+    });
+    function createHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+      document.body.appendChild(heart);
+      heart.style.left = (x - 10) + 'px';
+      heart.style.top = (y - 20) + 'px';
+      setTimeout(() => {
+        heart.remove();
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
