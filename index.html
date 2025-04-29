@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>智障的东西</title>
+  <title>狗</title>
   <style>
     body {
       background: pink;
@@ -44,21 +44,26 @@
 </head>
 <body>
   <h1>点击摸它!</h1>
-  <p style="color: #666; font-size: 0.9rem;">
   <div id="dog-container" style="position: relative;">
-
-    <img id="dog" src="dog.png" alt="Fluffy Samoyed">
+    <img id="dog" src="image/dog.png" alt="Fluffy Samoyed">
   </div>
-  <div style="color:red;font-size: 40;font:bolder" id="counter">好感度:0</div>
+  <div id="counter" style="color:red; font-size: 40px; font-weight: bolder;">
+    好感度: 0
+  </div>
   <script>
     const dog = document.getElementById('dog');
     const counterEl = document.getElementById('counter');
     let count = 0;
     dog.addEventListener('click', function(e) {
       count++;
-      counterEl.textContent = '好感度:' + count;
+      counterEl.textContent = '好感度: ' + count;
       createHeart(e.clientX, e.clientY);
+
+      if (count >= 100) {
+        window.location.href = 'congrats.html';
+      }
     });
+
     function createHeart(x, y) {
       const heart = document.createElement('div');
       heart.classList.add('heart');
